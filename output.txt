@@ -1,0 +1,194 @@
+*** Error setting resource limits. Mininet's performance may be affected.
+*** Creating network
+*** Adding hosts:
+h1 h2 h3 
+*** Adding switches:
+s1 
+*** Adding links:
+(h1, s1) (h2, s1) (h3, s1) 
+*** Configuring hosts
+h1 h2 h3 
+*** Starting controller
+
+*** Starting 1 switches
+s1 ...
+
+============================================================
+TEST 1 - Empty flow table (no rules, no controller)
+============================================================
+$ ovs-vsctl get-fail-mode s1
+secure
+
+$ ovs-ofctl show s1
+OFPT_FEATURES_REPLY (xid=0x2): dpid:0000000000000001
+n_tables:254, n_buffers:0
+capabilities: FLOW_STATS TABLE_STATS PORT_STATS QUEUE_STATS ARP_MATCH_IP
+actions: output enqueue set_vlan_vid set_vlan_pcp strip_vlan mod_dl_src mod_dl_dst mod_nw_src mod_nw_dst mod_nw_tos mod_tp_src mod_tp_dst
+ 1(s1-eth1): addr:ca:6f:06:f0:17:14
+     config:     0
+     state:      0
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 2(s1-eth2): addr:86:7d:e0:23:45:22
+     config:     0
+     state:      0
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 3(s1-eth3): addr:2e:57:46:08:64:f0
+     config:     0
+     state:      0
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ LOCAL(s1): addr:82:e3:f0:6e:20:42
+     config:     PORT_DOWN
+     state:      LINK_DOWN
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+OFPT_GET_CONFIG_REPLY (xid=0x4): frags=normal miss_send_len=0
+
+$ ovs-ofctl dump-flows s1
+
+*** Ping: testing ping reachability
+h1 -> X X 
+h2 -> X X 
+h3 -> X X 
+*** Results: 100% dropped (0/6 received)
+
+============================================================
+TEST 2 - My rules: ARP flood + one IP rule per host
+============================================================
+$ ovs-ofctl add-flow s1 priority=100,arp,actions=flood
+
+$ ovs-ofctl add-flow s1 priority=100,ip,nw_dst=10.0.0.1,actions=output:1
+
+$ ovs-ofctl add-flow s1 priority=100,ip,nw_dst=10.0.0.2,actions=output:2
+
+$ ovs-ofctl add-flow s1 priority=100,ip,nw_dst=10.0.0.3,actions=output:3
+
+*** Ping: testing ping reachability
+h1 -> h2 h3 
+h2 -> h1 X 
+h3 -> h1 h2 
+*** Results: 16% dropped (5/6 received)
+$ ovs-ofctl dump-flows s1
+ cookie=0x0, duration=1.026s, table=0, n_packets=5, n_bytes=210, priority=100,arp actions=FLOOD
+ cookie=0x0, duration=1.020s, table=0, n_packets=5, n_bytes=490, priority=100,ip,nw_dst=10.0.0.1 actions=output:"s1-eth1"
+ cookie=0x0, duration=1.016s, table=0, n_packets=3, n_bytes=294, priority=100,ip,nw_dst=10.0.0.2 actions=output:"s1-eth2"
+ cookie=0x0, duration=1.011s, table=0, n_packets=4, n_bytes=392, priority=100,ip,nw_dst=10.0.0.3 actions=output:"s1-eth3"
+
+
+============================================================
+TEST 3 - Drop h3 -> h1 at priority 200 (higher than 100)
+============================================================
+$ ovs-ofctl add-flow s1 priority=200,ip,nw_src=10.0.0.3,nw_dst=10.0.0.1,actions=drop
+
+$ h3 ping -c 3 10.0.0.1
+PING 10.0.0.1 (10.0.0.1) 56(84) bytes of data.
+
+--- 10.0.0.1 ping statistics ---
+3 packets transmitted, 0 received, 100% packet loss, time 2034ms
+
+
+$ h2 ping -c 3 10.0.0.1
+PING 10.0.0.1 (10.0.0.1) 56(84) bytes of data.
+64 bytes from 10.0.0.1: icmp_seq=1 ttl=64 time=0.199 ms
+64 bytes from 10.0.0.1: icmp_seq=2 ttl=64 time=0.194 ms
+64 bytes from 10.0.0.1: icmp_seq=3 ttl=64 time=0.249 ms
+
+--- 10.0.0.1 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2069ms
+rtt min/avg/max/mdev = 0.194/0.214/0.249/0.024 ms
+
+$ ovs-ofctl dump-flows s1
+ cookie=0x0, duration=5.114s, table=0, n_packets=3, n_bytes=294, priority=200,ip,nw_src=10.0.0.3,nw_dst=10.0.0.1 actions=drop
+ cookie=0x0, duration=6.147s, table=0, n_packets=11, n_bytes=462, priority=100,arp actions=FLOOD
+ cookie=0x0, duration=6.141s, table=0, n_packets=7, n_bytes=686, priority=100,ip,nw_dst=10.0.0.1 actions=output:"s1-eth1"
+ cookie=0x0, duration=6.137s, table=0, n_packets=6, n_bytes=588, priority=100,ip,nw_dst=10.0.0.2 actions=output:"s1-eth2"
+ cookie=0x0, duration=6.132s, table=0, n_packets=5, n_bytes=490, priority=100,ip,nw_dst=10.0.0.3 actions=output:"s1-eth3"
+
+$ ovs-appctl ofproto/trace s1 in_port=3,ip,nw_src=10.0.0.3,nw_dst=10.0.0.1
+Flow: ip,in_port=3,vlan_tci=0x0000,dl_src=00:00:00:00:00:00,dl_dst=00:00:00:00:00:00,nw_src=10.0.0.3,nw_dst=10.0.0.1,nw_proto=0,nw_tos=0,nw_ecn=0,nw_ttl=0,nw_frag=no
+
+bridge("s1")
+------------
+ 0. ip,nw_src=10.0.0.3,nw_dst=10.0.0.1, priority 200
+    drop
+
+Final flow: unchanged
+Megaflow: recirc_id=0,eth,ip,in_port=3,nw_src=10.0.0.3,nw_dst=10.0.0.1,nw_frag=no
+Datapath actions: drop
+
+
+============================================================
+TEST 4 - Same drop rule at priority 50 (lower than 100)
+============================================================
+$ ovs-ofctl --strict del-flows s1 priority=200,ip,nw_src=10.0.0.3,nw_dst=10.0.0.1
+
+$ ovs-ofctl add-flow s1 priority=50,ip,nw_src=10.0.0.3,nw_dst=10.0.0.1,actions=drop
+
+$ h3 ping -c 3 10.0.0.1
+PING 10.0.0.1 (10.0.0.1) 56(84) bytes of data.
+64 bytes from 10.0.0.1: icmp_seq=1 ttl=64 time=0.218 ms
+64 bytes from 10.0.0.1: icmp_seq=2 ttl=64 time=0.244 ms
+64 bytes from 10.0.0.1: icmp_seq=3 ttl=64 time=0.242 ms
+
+--- 10.0.0.1 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2080ms
+rtt min/avg/max/mdev = 0.218/0.234/0.244/0.011 ms
+
+$ ovs-ofctl dump-flows s1
+ cookie=0x0, duration=8.252s, table=0, n_packets=10, n_bytes=980, priority=100,ip,nw_dst=10.0.0.1 actions=output:"s1-eth1"
+ cookie=0x0, duration=8.248s, table=0, n_packets=7, n_bytes=686, priority=100,ip,nw_dst=10.0.0.2 actions=output:"s1-eth2"
+ cookie=0x0, duration=8.243s, table=0, n_packets=7, n_bytes=686, priority=100,ip,nw_dst=10.0.0.3 actions=output:"s1-eth3"
+ cookie=0x0, duration=8.258s, table=0, n_packets=13, n_bytes=546, priority=100,arp actions=FLOOD
+ cookie=0x0, duration=2.089s, table=0, n_packets=0, n_bytes=0, priority=50,ip,nw_src=10.0.0.3,nw_dst=10.0.0.1 actions=drop
+
+
+============================================================
+TEST 5 - Table miss: ARP rule deleted, priority 0 drop rule
+============================================================
+$ ovs-ofctl del-flows s1 arp
+
+$ ovs-ofctl add-flow s1 priority=0,actions=drop
+
+*** Ping: testing ping reachability
+h1 -> X X 
+h2 -> X X 
+h3 -> X X 
+*** Results: 100% dropped (0/6 received)
+$ ovs-ofctl dump-flows s1
+ cookie=0x0, duration=14.293s, table=0, n_packets=11, n_bytes=1078, priority=100,ip,nw_dst=10.0.0.1 actions=output:"s1-eth1"
+ cookie=0x0, duration=14.289s, table=0, n_packets=7, n_bytes=686, priority=100,ip,nw_dst=10.0.0.2 actions=output:"s1-eth2"
+ cookie=0x0, duration=14.284s, table=0, n_packets=8, n_bytes=784, priority=100,ip,nw_dst=10.0.0.3 actions=output:"s1-eth3"
+ cookie=0x0, duration=8.130s, table=0, n_packets=0, n_bytes=0, priority=50,ip,nw_src=10.0.0.3,nw_dst=10.0.0.1 actions=drop
+ cookie=0x0, duration=6.023s, table=0, n_packets=15, n_bytes=630, priority=0 actions=drop
+
+
+============================================================
+TEST 6 - No rules, fail mode standalone
+============================================================
+$ ovs-ofctl del-flows s1
+
+$ ovs-vsctl set-fail-mode s1 standalone
+
+$ ovs-ofctl dump-flows s1
+ cookie=0x0, duration=0.005s, table=0, n_packets=0, n_bytes=0, priority=0 actions=NORMAL
+
+*** Ping: testing ping reachability
+h1 -> h2 h3 
+h2 -> h1 h3 
+h3 -> h1 h2 
+*** Results: 0% dropped (6/6 received)
+
+============================================================
+DONE
+============================================================
+*** Stopping 0 controllers
+
+*** Stopping 3 links
+...
+*** Stopping 1 switches
+s1 
+*** Stopping 3 hosts
+h1 h2 h3 
+*** Done
