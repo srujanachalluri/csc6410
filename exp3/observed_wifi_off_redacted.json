@@ -1,0 +1,122 @@
+{
+  "student-host:host": {
+    "hostname": "[redacted-host]",
+    "os": "macos",
+    "collected-at": "2026-11-11T14:47:51-06:00",
+    "dns-server": [],
+    "interface": [
+      {
+        "name": "lo0",
+        "type": "loopback",
+        "mtu": 16384,
+        "ipv4": [
+          "127.0.0.1/8"
+        ],
+        "ipv6": [
+          "::xxxx/128",
+          "fe80::xxxx/64"
+        ],
+        "oper-status": "up"
+      },
+      {
+        "name": "gif0",
+        "type": "virtual",
+        "mtu": 1280,
+        "oper-status": "down"
+      },
+      {
+        "name": "stf0",
+        "type": "virtual",
+        "mtu": 1280,
+        "oper-status": "down"
+      },
+      {
+        "name": "en0",
+        "type": "wifi",
+        "mtu": 1500,
+        "mac": "7c:04:d0:xx:xx:xx",
+        "oper-status": "down"
+      },
+      {
+        "name": "en1",
+        "type": "other",
+        "mtu": 1500,
+        "mac": "82:18:34:xx:xx:xx",
+        "oper-status": "down"
+      },
+      {
+        "name": "bridge0",
+        "type": "virtual",
+        "mtu": 1500,
+        "mac": "82:18:34:xx:xx:xx",
+        "oper-status": "down"
+      },
+      {
+        "name": "p2p0",
+        "type": "other",
+        "mtu": 2304,
+        "mac": "0e:04:d0:xx:xx:xx",
+        "oper-status": "down"
+      },
+      {
+        "name": "awdl0",
+        "type": "virtual",
+        "mtu": 1484,
+        "mac": "d6:8b:ed:xx:xx:xx",
+        "oper-status": "down"
+      },
+      {
+        "name": "llw0",
+        "type": "virtual",
+        "mtu": 1500,
+        "mac": "d6:8b:ed:xx:xx:xx",
+        "oper-status": "up"
+      },
+      {
+        "name": "utun0",
+        "type": "virtual",
+        "mtu": 1380,
+        "ipv6": [
+          "fe80::xxxx/64"
+        ],
+        "oper-status": "up"
+      },
+      {
+        "name": "utun1",
+        "type": "virtual",
+        "mtu": 2000,
+        "ipv6": [
+          "fe80::xxxx/64"
+        ],
+        "oper-status": "up"
+      },
+      {
+        "name": "utun2",
+        "type": "virtual",
+        "mtu": 1000,
+        "ipv6": [
+          "fe80::xxxx/64"
+        ],
+        "oper-status": "up"
+      },
+      {
+        "name": "utun3",
+        "type": "virtual",
+        "mtu": 1380,
+        "ipv6": [
+          "fe80::xxxx/64"
+        ],
+        "oper-status": "up"
+      },
+      {
+        "name": "utun4",
+        "type": "virtual",
+        "mtu": 1380,
+        "ipv6": [
+          "fe80::xxxx/64"
+        ],
+        "oper-status": "up"
+      }
+    ]
+  }
+}
