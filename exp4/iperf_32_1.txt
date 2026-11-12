@@ -1,0 +1,136 @@
+[ 28] local 10.0.0.2 port 42670 connected with 10.3.0.2 port 5001
+[ 14] local 10.0.0.2 port 33165 connected with 10.3.0.2 port 5001
+[ 29] local 10.0.0.2 port 35242 connected with 10.3.0.2 port 5001
+[ 30] local 10.0.0.2 port 41317 connected with 10.3.0.2 port 5001
+[ 31] local 10.0.0.2 port 47124 connected with 10.3.0.2 port 5001
+[  6] local 10.0.0.2 port 51823 connected with 10.3.0.2 port 5001
+[ 32] local 10.0.0.2 port 59743 connected with 10.3.0.2 port 5001
+[  4] local 10.0.0.2 port 45426 connected with 10.3.0.2 port 5001
+[ 16] local 10.0.0.2 port 33801 connected with 10.3.0.2 port 5001
+[  8] local 10.0.0.2 port 39283 connected with 10.3.0.2 port 5001
+[  5] local 10.0.0.2 port 60588 connected with 10.3.0.2 port 5001
+[ 11] local 10.0.0.2 port 48540 connected with 10.3.0.2 port 5001
+[ 20] local 10.0.0.2 port 48115 connected with 10.3.0.2 port 5001
+[ 22] local 10.0.0.2 port 50269 connected with 10.3.0.2 port 5001
+------------------------------------------------------------
+Client connecting to 10.3.0.2, UDP port 5001
+Sending 1470 byte datagrams, IPG target: 11215.21 us (kalman adjust)
+UDP buffer size:  208 KByte (default)
+------------------------------------------------------------
+[  2] local 10.0.0.2 port 34350 connected with 10.3.0.2 port 5001
+[ 24] local 10.0.0.2 port 56035 connected with 10.3.0.2 port 5001
+[ 12] local 10.0.0.2 port 52301 connected with 10.3.0.2 port 5001
+[ 26] local 10.0.0.2 port 33303 connected with 10.3.0.2 port 5001
+[ 27] local 10.0.0.2 port 50491 connected with 10.3.0.2 port 5001
+[ 15] local 10.0.0.2 port 33920 connected with 10.3.0.2 port 5001
+[ 17] local 10.0.0.2 port 53814 connected with 10.3.0.2 port 5001
+[ 19] local 10.0.0.2 port 40537 connected with 10.3.0.2 port 5001
+[ 21] local 10.0.0.2 port 51930 connected with 10.3.0.2 port 5001
+[  1] local 10.0.0.2 port 45198 connected with 10.3.0.2 port 5001
+[ 25] local 10.0.0.2 port 41236 connected with 10.3.0.2 port 5001
+[  7] local 10.0.0.2 port 54029 connected with 10.3.0.2 port 5001
+[ 10] local 10.0.0.2 port 37574 connected with 10.3.0.2 port 5001
+[  3] local 10.0.0.2 port 33518 connected with 10.3.0.2 port 5001
+[  9] local 10.0.0.2 port 57520 connected with 10.3.0.2 port 5001
+[ 18] local 10.0.0.2 port 43991 connected with 10.3.0.2 port 5001
+[ 13] local 10.0.0.2 port 46601 connected with 10.3.0.2 port 5001
+[ 23] local 10.0.0.2 port 34368 connected with 10.3.0.2 port 5001
+[ ID] Interval       Transfer     Bandwidth
+[ 16] 0.0000-20.0192 sec  2.51 MBytes  1.05 Mbits/sec
+[ 16] Sent 1788 datagrams
+[ 14] 0.0000-20.0192 sec  2.51 MBytes  1.05 Mbits/sec
+[ 14] Sent 1788 datagrams
+[  9] 0.0000-20.0193 sec  2.51 MBytes  1.05 Mbits/sec
+[  9] Sent 1788 datagrams
+[ 17] 0.0000-20.0193 sec  2.51 MBytes  1.05 Mbits/sec
+[ 17] Sent 1788 datagrams
+[ 26] 0.0000-20.0193 sec  2.51 MBytes  1.05 Mbits/sec
+[ 26] Sent 1788 datagrams
+[ 29] 0.0000-20.0193 sec  2.51 MBytes  1.05 Mbits/sec
+[ 29] Sent 1788 datagrams
+[  5] 0.0000-20.0193 sec  2.51 MBytes  1.05 Mbits/sec
+[  5] Sent 1788 datagrams
+[ 24] 0.0000-20.0193 sec  2.51 MBytes  1.05 Mbits/sec
+[ 24] Sent 1788 datagrams
+[  8] 0.0000-20.0192 sec  2.51 MBytes  1.05 Mbits/sec
+[  8] Sent 1788 datagrams
+[ 10] 0.0000-20.0193 sec  2.51 MBytes  1.05 Mbits/sec
+[ 10] Sent 1788 datagrams
+[  6] 0.0000-20.0193 sec  2.51 MBytes  1.05 Mbits/sec
+[  6] Sent 1788 datagrams
+[ 31] 0.0000-20.0192 sec  2.51 MBytes  1.05 Mbits/sec
+[ 31] Sent 1788 datagrams
+[ 27] 0.0000-20.0192 sec  2.51 MBytes  1.05 Mbits/sec
+[ 27] Sent 1788 datagrams
+[ 18] 0.0000-20.0193 sec  2.51 MBytes  1.05 Mbits/sec
+[ 18] Sent 1788 datagrams
+[ 20] 0.0000-20.0210 sec  2.51 MBytes  1.05 Mbits/sec
+[ 20] Sent 1788 datagrams
+[ 25] 0.0000-20.0192 sec  2.51 MBytes  1.05 Mbits/sec
+[ 25] Sent 1788 datagrams
+[ 15] 0.0000-20.0192 sec  2.51 MBytes  1.05 Mbits/sec
+[ 15] Sent 1788 datagrams
+[ 28] 0.0000-20.0192 sec  2.51 MBytes  1.05 Mbits/sec
+[ 28] Sent 1788 datagrams
+[ 11] 0.0000-20.0192 sec  2.51 MBytes  1.05 Mbits/sec
+[ 11] Sent 1788 datagrams
+[ 12] 0.0000-20.0193 sec  2.51 MBytes  1.05 Mbits/sec
+[ 12] Sent 1788 datagrams
+[  7] 0.0000-20.0192 sec  2.51 MBytes  1.05 Mbits/sec
+[  7] Sent 1788 datagrams
+[ 32] 0.0000-20.0192 sec  2.51 MBytes  1.05 Mbits/sec
+[ 32] Sent 1788 datagrams
+[ 23] 0.0000-20.0192 sec  2.51 MBytes  1.05 Mbits/sec
+[ 23] Sent 1788 datagrams
+[ 19] 0.0000-20.0193 sec  2.51 MBytes  1.05 Mbits/sec
+[ 19] Sent 1788 datagrams
+[ 13] 0.0000-20.0192 sec  2.51 MBytes  1.05 Mbits/sec
+[ 13] Sent 1788 datagrams
+[  3] 0.0000-20.0192 sec  2.51 MBytes  1.05 Mbits/sec
+[  3] Sent 1788 datagrams
+[ 30] 0.0000-20.0193 sec  2.51 MBytes  1.05 Mbits/sec
+[ 30] Sent 1788 datagrams
+[  1] 0.0000-20.0192 sec  2.51 MBytes  1.05 Mbits/sec
+[  1] Sent 1788 datagrams
+[ 21] 0.0000-20.0193 sec  2.51 MBytes  1.05 Mbits/sec
+[ 21] Sent 1788 datagrams
+[  2] 0.0000-20.0193 sec  2.51 MBytes  1.05 Mbits/sec
+[  2] Sent 1788 datagrams
+[ 22] 0.0000-20.0192 sec  2.51 MBytes  1.05 Mbits/sec
+[ 22] Sent 1788 datagrams
+[  4] 0.0000-20.0193 sec  2.51 MBytes  1.05 Mbits/sec
+[  4] Sent 1788 datagrams
+[SUM] 0.0000-20.0205 sec  80.2 MBytes  33.6 Mbits/sec
+[SUM-32] Sent 57216 datagrams
+[ 20] WARNING: did not receive ack of last datagram after 10 tries.
+[ 18] WARNING: did not receive ack of last datagram after 10 tries.
+[  8] WARNING: did not receive ack of last datagram after 10 tries.
+[ 25] WARNING: did not receive ack of last datagram after 10 tries.
+[ 34] WARNING: did not receive ack of last datagram after 10 tries.
+[ 28] WARNING: did not receive ack of last datagram after 10 tries.
+[ 15] WARNING: did not receive ack of last datagram after 10 tries.
+[ 11] WARNING: did not receive ack of last datagram after 10 tries.
+[ 13] WARNING: did not receive ack of last datagram after 10 tries.
+[  3] WARNING: did not receive ack of last datagram after 10 tries.
+[ 30] WARNING: did not receive ack of last datagram after 10 tries.
+[ 32] WARNING: did not receive ack of last datagram after 10 tries.
+[ 21] WARNING: did not receive ack of last datagram after 10 tries.
+[ 17] WARNING: did not receive ack of last datagram after 10 tries.
+[ 26] WARNING: did not receive ack of last datagram after 10 tries.
+[ 10] WARNING: did not receive ack of last datagram after 10 tries.
+[  4] WARNING: did not receive ack of last datagram after 10 tries.
+[ 19] WARNING: did not receive ack of last datagram after 10 tries.
+[  5] WARNING: did not receive ack of last datagram after 10 tries.
+[ 12] WARNING: did not receive ack of last datagram after 10 tries.
+[  6] WARNING: did not receive ack of last datagram after 10 tries.
+[ 24] WARNING: did not receive ack of last datagram after 10 tries.
+[  7] WARNING: did not receive ack of last datagram after 10 tries.
+[ 23] WARNING: did not receive ack of last datagram after 10 tries.
+[ 14] WARNING: did not receive ack of last datagram after 10 tries.
+[ 22] WARNING: did not receive ack of last datagram after 10 tries.
+[  9] WARNING: did not receive ack of last datagram after 10 tries.
+[ 27] WARNING: did not receive ack of last datagram after 10 tries.
+[ 29] WARNING: did not receive ack of last datagram after 10 tries.
+[ 33] WARNING: did not receive ack of last datagram after 10 tries.
+[ 16] WARNING: did not receive ack of last datagram after 10 tries.
+[ 31] WARNING: did not receive ack of last datagram after 10 tries.
